@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>page</title>
+  </head>
+  <body id="pageid">
+    <!--accessibility-->
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <!---->
+    <div class="topnavdiv">
+      <ul class="topnav">
+        <li><a class="active" href="#">This page</a></li>
+        <li><a href="secondpage">Second page</a></li>
+        <li><a href="thirdpage">Third page</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <section id="main" tabindex="-1">
+         <h1>Main content here</h1>
+		 <p>This is a test page to demonstrate how different colors interact with this webpage. The only elements that do not update are the text elements at the top in the navigation bar.</p>
+      </section>
+      <section id="addional">
+         <h1>Additional content here</h1>
+		 <p>Background
+		 <input id="changebackgroundcolor" type="color" value="#444444"></p>
+		 <p>Text
+		 <input id="changetextcolor" type="color" value="#FFFFFF"></p>
+		 <p>Accent
+		 <input id="changeaccentcolor" type="color" value="#3DDBFF"></p>
+		 <p>Navbar background
+		 <input id="changenavbarbackgroundcolor" type="color" value="#333333"></p>
+		 <p>Footer background
+		 <input id="changefooterbackgroundcolor" type="color" value="#555555"></p>
+		 <p>Footer text
+		 <input id="changefootertextcolor" type="color" value="#CCCCCC"></p>
+		
+		<p>
+		  An example demonstrating the use of the
+		  <code>&lt;input type="color"&gt;</code> control.
+		</p>
+
+
+		<!--
+		<label for="colorWell">Color:</label>
+		<input type="color" value="#ff0000" id="colorWell" />
+		-->
+
+		<p>
+		  Watch the colors change when you adjust the color pickers. As you
+		  make changes in the color pickers, the elements' color changes, as a
+		  preview (this uses the <code>input</code> event). When you close the color
+		  picker, the <code>change</code> event fires, and we detect that to change
+		  every paragraph to the selected color. This page may load slower than the bare page due to the increased code size required to make the color pickers work.
+		  <a href="https://github.com/KatMercer/minimalweb">Kat Mercer</a>
+		</p>
+		
+		<script>
+			let changetextcolor;
+			let changebackgroundcolor;
+			//const defaultColor = "#FFFFFF";
+			window.addEventListener("load", startup, false);
+
+			function startup() {
+			  changebackgroundcolor = document.querySelector("#changebackgroundcolor");
+			  changetextcolor = document.querySelector("#changetextcolor");
+			  changeaccentcolor = document.querySelector("#changeaccentcolor");
+			  changenavbarbackgroundcolor = document.querySelector("#changenavbarbackgroundcolor");
+			  changefooterbackgroundcolor = document.querySelector("#changefooterbackgroundcolor");
+			  changefootertextcolor = document.querySelector("#changefootertextcolor");
+			  //changetextcolor.value = "#FFFFFF";
+			  //changebackgroundcolor.value = "#000000";
+			  changebackgroundcolor.addEventListener("input", updateBackground, false);
+			  changetextcolor.addEventListener("input", updateText, false);
+			  changeaccentcolor.addEventListener("input", updateAccentColor, false);
+			  changenavbarbackgroundcolor.addEventListener("input", updateNavbarBackgroundColor, false);
+			  changefooterbackgroundcolor.addEventListener("input", updateFooterBackgroundColor, false);
+			  changefootertextcolor.addEventListener("input", updateFooterTextColor, false);
+			}
+			
+			function updateBackground(event) {
+				document.body.style.background = event.target.value;
+			}
+
+			function updateText(event) {
+			  //document.querySelectorAll("p").forEach((p) => {
+				//p.style.color = event.target.value;
+			  //});
+			  document.body.style.color = event.target.value;
+			}
+			
+			function updateAccentColor(event) {
+				document.querySelectorAll(".content a").forEach((a) => {
+					a.style.color = event.target.value;
+				});
+				document.querySelectorAll("footer a").forEach((a) => {
+					a.style.color = event.target.value;
+				});
+				document.querySelectorAll(".active").forEach((a) => {
+					a.style.background = event.target.value;
+				});
+				document.querySelectorAll(".topnavdiv").forEach((a) => {
+					a.style.borderBottomColor = event.target.value;
+				});
+			}
+			
+			function updateNavbarBackgroundColor(event) {
+				document.querySelectorAll(".topnavdiv").forEach((a) => {
+					a.style.background = event.target.value;
+				});
+			}
+			
+			function updateFooterBackgroundColor(event) {
+				document.querySelectorAll("footer").forEach((a) => {
+					a.style.background = event.target.value;
+				});
+			}
+			
+			function updateFooterTextColor(event) {
+				document.querySelectorAll("footer").forEach((a) => {
+					a.style.color = event.target.value;
+				});
+			}
+
+		</script>
+
+		
+      </section>
+    </div>
+    <footer>minimal design by <a href="https://github.com/KatMercer/minimalweb">Kat Mercer</a></footer>
+  </body>
+</html>
